@@ -21,11 +21,11 @@ jobs:
 
       - name: Build React test image
         run: |
-          docker build -t complex/react-test -f ./client/Dockerfile.dev ./client
+          docker build -t chief711/react-test -f ./client/Dockerfile.dev ./client
 
       - name: Run tests on React app
         run: |
-          docker run -e CI=true complex/react-test npm test
+          docker run -e CI=true chief711/react-test npm test
 
   deploy:
     needs: build-test
@@ -41,10 +41,10 @@ jobs:
 
       - name: Build production Docker images
         run: |
-          docker build -t complex/multi-client ./client
-          docker build -t complex/multi-nginx ./nginx
-          docker build -t complex/multi-server ./server
-          docker build -t complex/multi-worker ./worker
+          docker build -t chief711/multi-client ./client
+          docker build -t chief711/multi-nginx ./nginx
+          docker build -t chief711/multi-server ./server
+          docker build -t chief711/multi-worker ./worker
 
       - name: Log in to DockerHub
         uses: docker/login-action@v3
@@ -54,7 +54,7 @@ jobs:
 
       - name: Push images to DockerHub
         run: |
-          docker push complex/multi-client
-          docker push complex/multi-nginx
-          docker push complex/multi-server
-          docker push complex/multi-worker
+          docker push chief711/multi-client
+          docker push chief711/multi-nginx
+          docker push chief711/multi-server
+          docker push chief711/multi-worker
