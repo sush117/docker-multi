@@ -21,18 +21,18 @@ jobs:
 
       - name: Build test image
         run: |
-          docker build -t rallycoding/react-test -f ./client/Dockerfile.dev ./client
+          docker build -t chief711/react-test -f ./client/Dockerfile.dev ./client
 
       - name: Run tests
         run: |
-          docker run -e CI=true rallycoding/react-test npm test
+          docker run -e CI=true chief711/react-test npm test
 
       - name: Build production Docker images
         run: |
-          docker build -t rallycoding/multi-client ./client
-          docker build -t rallycoding/multi-nginx ./nginx
-          docker build -t rallycoding/multi-server ./server
-          docker build -t rallycoding/multi-worker ./worker
+          docker build -t chief711/multi-client ./client
+          docker build -t chief711/multi-nginx ./nginx
+          docker build -t chief711/multi-server ./server
+          docker build -t chief711/multi-worker ./worker
 
       - name: Log in to DockerHub
         uses: docker/login-action@v3
@@ -42,10 +42,10 @@ jobs:
 
       - name: Push Docker images to DockerHub
         run: |
-          docker push rallycoding/multi-client
-          docker push rallycoding/multi-nginx
-          docker push rallycoding/multi-server
-          docker push rallycoding/multi-worker
+          docker push chief711/multi-client
+          docker push chief711/multi-nginx
+          docker push chief711/multi-server
+          docker push chief711/multi-worker
 
       - name: Install AWS CLI and EB CLI
         run: |
